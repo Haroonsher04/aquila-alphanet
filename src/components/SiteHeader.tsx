@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { PRODUCTS, PRODUCT_INK, PRODUCT_LINKS } from "@/content/products";
+import { PRODUCTS, PRODUCT_INK, PRODUCT_LINKS, PRODUCT_LOGO } from "@/content/products";
 import { btnInk } from "./form";
 
 type NavKey = "home" | "products" | "about" | "contact" | "none";
@@ -16,7 +17,7 @@ function activeKey(path: string): NavKey {
   return "none";
 }
 
-const NAV_PRODUCTS = PRODUCT_LINKS.map((l) => ({ ...l, name: PRODUCTS[l.key].name, ink: PRODUCT_INK[l.key].ink }));
+const NAV_PRODUCTS = PRODUCT_LINKS.map((l) => ({ ...l, name: PRODUCTS[l.key].name, ink: PRODUCT_INK[l.key].ink, logo: PRODUCT_LOGO[l.key] }));
 
 const navItem = (on: boolean) =>
   `relative px-3 py-2 text-[15px] font-semibold stretch-head text-ink hover:text-form ${
@@ -25,11 +26,10 @@ const navItem = (on: boolean) =>
 
 const mobileLink = "block border-b border-dashed border-form py-3 text-[18px] font-bold text-ink stretch-head";
 
-/** Placeholder wordmark until the real AlphaNet logo exists. */
 export function Wordmark() {
   return (
     <span className="flex items-center gap-2.5">
-      <span className="grid h-9 w-9 place-items-center border-2 border-form font-mono text-[14px] font-semibold text-ink">AN</span>
+      <Image src="/brand/alphanet-mark.png" alt="" width={48} height={36} priority className="h-9 w-auto" />
       <span className="text-[19px] leading-none font-extrabold tracking-[-.01em] text-ink stretch-head">AlphaNet Solutions</span>
     </span>
   );
@@ -92,7 +92,11 @@ export function SiteHeader() {
                         href={p.href}
                         className={`flex gap-3 border-form p-4 hover:bg-form-tint ${i % 2 === 0 ? "sm:border-r" : ""} ${i < NAV_PRODUCTS.length - 1 ? "border-b" : ""}`}
                       >
-                        <span className="mt-1 h-3 w-3 flex-none" style={{ background: p.ink }} />
+                        {p.logo ? (
+                          <Image src={p.logo} alt="" width={24} height={22} className="mt-0.5 h-[22px] w-6 flex-none object-contain" />
+                        ) : (
+                          <span className="mt-1 h-3 w-3 flex-none" style={{ background: p.ink }} />
+                        )}
                         <span>
                           <span className="block text-[16px] font-bold text-ink stretch-head">{p.name}</span>
                           <span className="mt-1 block text-[13.5px] leading-[1.45] text-muted">{p.tag}</span>
@@ -137,7 +141,11 @@ export function SiteHeader() {
             <div className="caption pt-4 pb-1">Our Products</div>
             {NAV_PRODUCTS.map((p) => (
               <Link key={p.key} href={p.href} className="flex items-center gap-3 py-2.5 text-[16px] font-semibold text-ink">
-                <span className="h-2.5 w-2.5" style={{ background: p.ink }} />
+                {p.logo ? (
+                  <Image src={p.logo} alt="" width={20} height={18} className="h-[18px] w-5 object-contain" />
+                ) : (
+                  <span className="h-2.5 w-2.5" style={{ background: p.ink }} />
+                )}
                 {p.name}
               </Link>
             ))}

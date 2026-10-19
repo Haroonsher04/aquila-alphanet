@@ -68,7 +68,7 @@ export function Hero() {
       <div className="sheet lg:px-14">
         <div className="flex flex-wrap items-end justify-between gap-4 pb-3">
           <div>
-            <div className="text-[26px] leading-none font-extrabold text-form stretch-display sm:text-[30px]">Health insurance claim form</div>
+            <div className="text-[26px] leading-none font-extrabold text-form stretch-display sm:text-[30px]">Welcome to AlphaNet Solutions!</div>
             <Caption className="mt-1.5">Approved by National Uniform Claim Committee (NUCC) 02/12</Caption>
           </div>
           <div className="caption flex flex-wrap gap-x-4 gap-y-1" aria-hidden="true">

@@ -1,11 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { PRODUCTS, PRODUCT_LINKS } from "@/content/products";
 import { CONTACT, FOOTER_SERVICES, USEFUL_LINKS } from "@/content/site";
 import { useMountainTime } from "@/lib/useMountainTime";
 import { Box, Ruled, Typed } from "./form";
-import { Wordmark } from "./SiteHeader";
 
 const link = "text-ink underline-offset-4 hover:text-form hover:underline";
 const social =
@@ -19,15 +19,21 @@ export function SiteFooter() {
       <div className="sheet lg:px-14">
         <Ruled className="lg:grid-cols-12">
           <Box caption="AlphaNet Solutions – HASH LLC" className="lg:col-span-7">
-            <div className="mt-3">
-              <Wordmark />
+            <div className="mt-4 flex flex-col-reverse gap-5 sm:flex-row sm:items-center sm:gap-8">
+              <p className="m-0 min-w-0 flex-1 text-[15px] leading-[1.65] text-graphite">
+                AlphaNet Solutions is a software and healthcare technology company specializing in custom software
+                development, EHR/PM solutions, Revenue Cycle Management (RCM), cloud and DevOps services, API integrations,
+                AI automation, and product modernization. We help businesses build, deploy, customize, integrate, and scale
+                secure digital solutions while providing ongoing technical support and maintenance.
+              </p>
+              <Image
+                src="/brand/alphanet-logo.png"
+                alt="AlphaNet Solutions – HASH LLC: Ideas, Technology, Impact"
+                width={900}
+                height={729}
+                className="h-auto w-[160px] flex-none"
+              />
             </div>
-            <p className="mt-4 mb-0 max-w-[68ch] text-[15px] leading-[1.65] text-graphite">
-              AlphaNet Solutions is a software and healthcare technology company specializing in custom software
-              development, EHR/PM solutions, Revenue Cycle Management (RCM), cloud and DevOps services, API integrations,
-              AI automation, and product modernization. We help businesses build, deploy, customize, integrate, and scale
-              secure digital solutions while providing ongoing technical support and maintenance.
-            </p>
           </Box>
           <Box caption="Billing provider info & ph #" className="lg:col-span-5">
             <div className="mt-3 flex items-center gap-2 text-[14px] text-graphite">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Box, Caption, Flag, Heading, Part } from "@/components/form";
 import { HOME_PRODUCTS } from "@/content/home";
@@ -35,7 +36,10 @@ export function Products() {
             <Flag>Flagship</Flag>
             <span className="font-mono text-[12.5px] text-ink">EHR · PMS · RCM · AI</span>
           </div>
-          <h3 className="m-0 mt-4 text-[clamp(34px,4vw,56px)] leading-[.95] font-black text-ink uppercase stretch-display">Aquila EHR/PMS</h3>
+          <div className="mt-4 flex items-center gap-4">
+            <Image src="/brand/aquila-mark.png" alt="" width={480} height={444} className="h-[clamp(52px,5vw,72px)] w-auto flex-none" />
+            <h3 className="m-0 text-[clamp(34px,4vw,56px)] leading-[.95] font-black text-ink uppercase stretch-display">Aquila EHR/PMS</h3>
+          </div>
           <p className="mt-4 mb-0 max-w-[56ch] text-[16px] leading-[1.65] text-graphite">
             A comprehensive healthcare technology platform designed to help medical practices manage clinical care,
             administrative workflows, patient engagement, billing, and revenue cycle operations through a single

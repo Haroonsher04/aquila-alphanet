@@ -1,14 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Box, Caption, Check, Heading, Part, Ruled, btnInk, btnOutline, btnPaper } from "@/components/form";
-import { PRODUCTS, PRODUCT_INK, PRODUCT_LINKS, type ProductKey } from "@/content/products";
+import { PRODUCTS, PRODUCT_INK, PRODUCT_LINKS, PRODUCT_LOGO, type ProductKey } from "@/content/products";
 
 /** One template for all five products (design: Product.dc.html), printed in the product's own form ink. */
 export function ProductView({ productKey }: { productKey: ProductKey }) {
   const p = PRODUCTS[productKey];
   const ink = PRODUCT_INK[productKey];
+  const logo = PRODUCT_LOGO[productKey];
   const all = p.sections;
   const titles = all.flatMap((s) => s.groups.map((g) => g.t));
 
@@ -34,9 +36,15 @@ export function ProductView({ productKey }: { productKey: ProductKey }) {
           </nav>
           <Ruled className="border-t-2 lg:grid-cols-12">
             <Box caption="Product" className="bg-form-tint lg:col-span-8">
-              <h1 className="m-0 mt-3 text-[clamp(44px,6.4vw,96px)] leading-[.9] font-black tracking-[-.02em] text-ink uppercase stretch-display">
-                {p.name}
-              </h1>
+              {logo && <Image src={logo} alt="" width={480} height={444} priority className="mt-4 h-16 w-auto sm:hidden" />}
+              <div className="mt-3 flex items-center justify-between gap-6">
+                <h1 className="m-0 min-w-0 text-[clamp(44px,6.4vw,96px)] leading-[.9] font-black tracking-[-.02em] text-ink uppercase stretch-display">
+                  {p.name}
+                </h1>
+                {logo && (
+                  <Image src={logo} alt="" width={480} height={444} priority className="hidden h-[clamp(96px,10vw,160px)] w-auto flex-none sm:block" />
+                )}
+              </div>
               <p className="mt-5 mb-0 max-w-[38ch] text-[clamp(19px,1.9vw,24px)] leading-[1.3] font-bold text-form stretch-head">{p.tagline}</p>
             </Box>
 

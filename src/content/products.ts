@@ -224,6 +224,11 @@ export const PRODUCT_LINKS: ProductLink[] = [
   { key: "woundwise", slug: "woundwise", href: "/products/woundwise", tag: "Specialized EHR and practice management for wound care." },
 ];
 
+/** Product logos in /public/brand; products without one fall back to their ink swatch. */
+export const PRODUCT_LOGO: Partial<Record<ProductKey, string>> = {
+  aquila: "/brand/aquila-mark.png",
+};
+
 export const productBySlug = (slug: string) => PRODUCT_LINKS.find((l) => l.slug === slug);
 
 /**
